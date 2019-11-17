@@ -12,6 +12,18 @@ export class ResponseCodes {
     'userId',
   );
 
+  static readonly NOT_FOUND = new ResponseCode(
+    404,
+    'Not Found',
+    HttpCodesNames.NotFound,
+  );
+
+  static readonly GENERAL_ERROR = new ResponseCode(
+    500,
+    'GeneralError',
+    HttpCodesNames.GeneralError,
+  );
+
   // *********    Examples:   ***********
   //
   // static readonly COUPON_NOT_EXIST_OR_INVALID = new ResponseCode(
@@ -47,17 +59,7 @@ export class ResponseCodes {
   //   HttpCodesNames.BadRequest,
   // );
 
-  // static readonly NOT_FOUND = new ResponseCode(
-  //   404,
-  //   'Not Found',
-  //   HttpCodesNames.NotFound,
-  // );
-
-  // static readonly GENERAL_ERROR = new ResponseCode(
-  //   500,
-  //   'GeneralError',
-  //   HttpCodesNames.GeneralError,
-  // );
+  
 
   // static NOT_ENOUGH_NEW_MEMBERS(
   //   numberOfRequiredNewMembers: number,

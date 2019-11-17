@@ -1,6 +1,6 @@
 {
   "name": "@payk/nestjs-response-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NestJS Response Transformers, Interceptors and utils",
   "main": "dist/index.js",
   "repository": {
