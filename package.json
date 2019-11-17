@@ -1,0 +1,37 @@
+{
+  "name": "@payk/nestjs-response-utils",
+  "version": "1.0.0",
+  "description": "NestJS Response Transformers, Interceptors and utils",
+  "main": "dist/index.js",
+  "repository": {
+    "url": "https://github.com/pay-k/nestjs-response-utils.git",
+    "type": "git"
+  },
+  "scripts": {
+    "test": "mocha --opts .mocharc",
+    "test-juint": "mocha --opts .mocharc --reporter mocha-junit-reporter",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "publish-package": "npm run-script build && npm publish"
+  },
+  "keywords": [
+    "nestjs",
+    "response",
+    "interceptor"
+  ],
+  "author": "Dan Shapir",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^6.10.1",
+    "@payk/nestjs-winston": "^1.2.1",
+    "class-transformer": "^0.2.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.3",
+    "typescript": "^3.6.3"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.0",
+    "source-map-support": "^0.5.13",
+    "ts-node": "^8.3.0"
+  }
+}
