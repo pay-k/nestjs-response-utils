@@ -15,13 +15,9 @@ import { HttpResponsesGenerator } from './http-response.generator';
 import { WinstonLogger } from '@payk/nestjs-winston';
 import { plainToClass } from 'class-transformer';
 
-export interface Response<T> {
-  data: T;
-}
-
 @Injectable()
-export class TransformResponseInterceptor<T>
-  implements NestInterceptor<T, Response<T>> {
+export class TransformResponseInterceptor
+  implements NestInterceptor {
   private readonly logger = new WinstonLogger(TransformResponseInterceptor.name);
 
   /**
@@ -39,7 +35,7 @@ export class TransformResponseInterceptor<T>
   intercept(
     context: ExecutionContext,
     next: CallHandler,
-  ): Observable<Response<T>> {
+  ): Observable<any> {
     // Before
     return next.handle().pipe(
       map(data => {
