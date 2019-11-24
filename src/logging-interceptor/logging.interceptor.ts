@@ -21,11 +21,11 @@ import { WinstonLogger } from '@payk/nestjs-winston';
         .handle()
         .pipe(tap((response) =>  {
           let httpResponse = context.switchToHttp().getResponse();
-          this.logger.info(`Response: To ${url} with method ${method}, status code: ${httpResponse.statusCode}`, { response: { headers: httpResponse.getHeaders(), statusCode: httpResponse.statusCode, body: response }, request: { body, params, query, headers, method, url, path: route.path }})
+          this.logger.info(`Response: To path: ${route.path} (${url}) with method ${method}, status code: ${httpResponse.statusCode}`, { response: { headers: httpResponse.getHeaders(), statusCode: httpResponse.statusCode, body: response }, request: { body, params, query, headers, method, url, path: route.path }})
         })).pipe(catchError((err) => {
           let httpResponse = context.switchToHttp().getResponse();
           let statusCode = err?.status;
-          this.logger.error(`Response: To ${url} with method ${method}, status code: ${statusCode ?? httpResponse.statusCode}`, { response: { headers: httpResponse.getHeaders(), statusCode: httpResponse.statusCode, error: err }, request: { body, params, query, headers, method, url, path: route.path }})
+          this.logger.error(`Response: To path: ${route.path} (${url}) with method ${method}, status code: ${statusCode ?? httpResponse.statusCode}`, { response: { headers: httpResponse.getHeaders(), statusCode: httpResponse.statusCode, error: err }, request: { body, params, query, headers, method, url, path: route.path }})
           return throwError(err)
         }));
     }
