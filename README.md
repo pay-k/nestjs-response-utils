@@ -28,3 +28,5 @@ Add a decorator on top of your method or controller
 The `LogginInterceptor` can also be added globally according to NestJS documentation.
 
 The `TransformResponseInterceptor` accepts in his ctor the object it's supposed to transform and also a mapping function if the properties are named differently.
+
+##### It's important to always put the logging interceptor first, as he needs to be the first to run and last to catch errors.
