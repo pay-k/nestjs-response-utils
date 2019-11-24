@@ -25,7 +25,8 @@
     "@payk/nestjs-winston": "^1.2.1",
     "class-transformer": "^0.2.3",
     "rxjs": "^6.5.3",
-    "typescript": "^3.6.3"
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.8",
