@@ -1,6 +1,6 @@
 {
   "name": "@payk/nestjs-response-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "NestJS Response Transformers, Interceptors and utils",
   "main": "dist/index.js",
   "repository": {
@@ -22,10 +22,8 @@
   "author": "Dan Shapir",
   "license": "ISC",
   "dependencies": {
-    "@nestjs/common": "^6.10.1",
     "@payk/nestjs-winston": "^1.2.1",
     "class-transformer": "^0.2.3",
-    "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.3",
     "typescript": "^3.6.3"
   },
@@ -34,5 +32,9 @@
     "rimraf": "^3.0.0",
     "source-map-support": "^0.5.13",
     "ts-node": "^8.3.0"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^6.10.1",
+    "reflect-metadata": "^0.1.13"
   }
 }
