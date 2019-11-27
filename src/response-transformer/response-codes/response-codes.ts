@@ -1,27 +1,20 @@
 import { ResponseCode } from './response-code';
-import { HttpCodesNames } from '../http-codes-names.enums';
-
+import { HttpStatus } from '@nestjs/common';
 export class ResponseCodes {
-  static readonly OK = new ResponseCode(200, '', HttpCodesNames.OK);
+  static readonly OK = new ResponseCode(HttpStatus.OK);
 
   static readonly BAD_REQUEST = new ResponseCode(
-    400,
-    'Bad Request. General error',
-    HttpCodesNames.BadRequest,
-    undefined,
+    HttpStatus.BAD_REQUEST,
     'userId',
   );
 
   static readonly NOT_FOUND = new ResponseCode(
-    404,
-    'Not Found',
-    HttpCodesNames.NotFound,
+    HttpStatus.NOT_FOUND,
+    'userId'
   );
 
   static readonly GENERAL_ERROR = new ResponseCode(
-    500,
-    'GeneralError',
-    HttpCodesNames.GeneralError,
+    HttpStatus.INTERNAL_SERVER_ERROR
   );
 
   // *********    Examples:   ***********

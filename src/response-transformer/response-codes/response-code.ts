@@ -1,13 +1,17 @@
-import { HttpCodesNames } from '../http-codes-names.enums';
+import { HttpStatus } from "@nestjs/common";
 
 export class ResponseCode {
   constructor(
-    public code: number,
-    public errorMessage: string,
-    public httpCodeName: HttpCodesNames,
-    public pendingMessage: string = null,
-    public property: string = null,
+    public httpStatus: HttpStatus,
+    public property: string = undefined,
+    public code: number = undefined,
+    public errorMessage: string = undefined,
+    public pendingMessage: string = undefined,
+    public error: any = undefined
   ) {
     this.pendingMessage = pendingMessage || errorMessage;
+    this.errorMessage = errorMessage || HttpStatus[httpStatus];
+    this.code = code || httpStatus;
+    this.error = { error };
   }
 }

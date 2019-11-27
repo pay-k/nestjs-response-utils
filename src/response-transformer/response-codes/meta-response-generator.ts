@@ -1,15 +1,13 @@
 import { MetaResponse } from './meta-response';
 import { ResponseCode } from './response-code';
+import { HttpStatus } from '@nestjs/common';
 export class MetaResponseGenerator {
   static generateFull<resultType>(
     value: resultType,
-    responseCode: ResponseCode,
-    responseCodes: ResponseCode[],
-  ) {
+    responseCode: ResponseCode) {
     const instance = new MetaResponse();
     instance.value = value;
-    instance.mainResponseCode = responseCode;
-    instance.responseCodes = responseCodes;
+    instance.addResponseCode(responseCode)
   }
 
   static generateByResponseCode<resultType>(
@@ -18,8 +16,7 @@ export class MetaResponseGenerator {
   ): MetaResponse<resultType> {
     const instance = new MetaResponse<resultType>();
     instance.value = value;
-    instance.mainResponseCode = responseCode;
-    instance.responseCodes = new Array<ResponseCode>(responseCode);
+    instance.addResponseCode(responseCode);
     return instance;
   }
 
@@ -27,5 +24,9 @@ export class MetaResponseGenerator {
     responseCode: ResponseCode,
   ): MetaResponse<resultType> {
     return this.generateByResponseCode(null, responseCode);
+  }
+
+  static generateErrorByStatus<resultType>(httpStatus: HttpStatus, error: any) {
+    return this.generateByResponseCode(null, new ResponseCode(httpStatus, undefined, undefined, undefined, undefined, error));
   }
 }

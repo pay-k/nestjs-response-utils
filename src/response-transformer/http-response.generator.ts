@@ -1,16 +1,17 @@
 import { Expose, classToPlain, Exclude } from 'class-transformer';
+import { ResponseCode } from './response-codes/response-code';
+import { MetaResponse } from './response-codes/meta-response';
 
-export class HttpResponsesGenerator {
+export class HttpResponsesGenerator<T>{
   @Expose()
   public get message() {
-    return [
-      {
+    return this.responseCodes.map((res) =>  { 
+      return {
         target: this.target,
-        value: this.value,
-        constraints: this.technicalError,
-        property: this.property,
-      },
-    ];
+        value: this.target[res.property],
+        constraints: res.error,
+        property: res.property,
+    }});
   }
 
   @Exclude()
@@ -23,7 +24,7 @@ export class HttpResponsesGenerator {
   public error: string;
 
   @Exclude()
-  private readonly technicalError: any;
+  private readonly responseCodes: ResponseCode[]
 
   @Exclude()
   private readonly property: string;
@@ -47,16 +48,14 @@ export class HttpResponsesGenerator {
    * @param [technicalError]
    */
   constructor(
-    statusCode: number,
-    error: string,
-    target: any,
-    property?: string,
-    technicalError = { error: 'General error' },
+    response: MetaResponse<T>,
+    request: any
   ) {
-    this.statusCode = statusCode;
-    this.error = error;
-    this.target = target;
-    this.technicalError = technicalError;
-    this.property = property;
+  
+    this.statusCode = response.mainResponseCode.code
+    this.error = response.mainResponseCode.errorMessage;
+    this.target = request;
+    this.property = response.mainResponseCode.property;
+    this.responseCodes = response.responseCodes;
   }
 }
