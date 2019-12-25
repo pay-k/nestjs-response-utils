@@ -1,6 +1,16 @@
 import { HttpStatus } from "@nestjs/common";
 
 export class ResponseCode {
+  /**
+ * Creates an instance of ResponseCode.
+ * @param {HttpStatus} httpStatus
+ * @param {string} [property=undefined]
+ * @param {number} [code=undefined]
+ * @param {string} [errorMessage=undefined]
+ * @param {string} [pendingMessage=undefined]
+ * @param {*} [error=undefined]
+ * @memberof ResponseCode
+ */
   constructor(
     public httpStatus: HttpStatus,
     public property: string = undefined,

@@ -28,5 +28,35 @@ Add a decorator on top of your method or controller
 The `LogginInterceptor` can also be added globally according to NestJS documentation.
 
 The `TransformResponseInterceptor` accepts in his ctor the object it's supposed to transform and also a mapping function if the properties are named differently.
+<aside class="warning">
+It's important to always put the logging interceptor first, as he needs to be the first to run and last to catch errors.
+</aside>
 
-##### It's important to always put the logging interceptor first, as he needs to be the first to run and last to catch errors.
+## Why & How
+Our operation mode is that Dto goes into the controller and then into the service. And the service works with Models (DB Models mainly). The service then returns to the controller the Model and the controller transforms it into a Response DTO. To remove the boilerplate, the service should use a MetaResponse object and the controller the TransformResponseInterceptor that will do the transformation of the MetaResponse<Model> into the ResponseDTO.
+
+The Service gets a RequestDTO and returns a `MetaRespone<Model>` created by the `MetaResponseGenerator` to the controller.
+
+### MetaResponse
+Do create a MetaResponse we have a MetaResponseGenerator class.
+```ts
+// Return an object (Model) and the require ResponseCode (HttpResponse normally)
+MetaResponseGenerator.generateByResponseCode(
+    dbModel,
+    ResponseCodes.OK,
+  );
+
+// Return an Error, no object needed.
+MetaResponseGenerator.generateAnErrorResponse(
+    ResponseCodes.NOT_FOUND,
+  );
+
+// Return an HttpStatus error
+MetaResponseGenerator.generateErrorByStatus(
+  HttpStatus.OK,
+  { error: 'object' }
+)
+```
+
+### ResponseCode
+The ResponseCode object assists in returning errors mainly. A few come by default in the `ResponseCodes` class. More can be initiated using the `ResponseCode` ctor
