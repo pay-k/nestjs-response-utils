@@ -60,3 +60,38 @@ MetaResponseGenerator.generateErrorByStatus(
 
 ### ResponseCode
 The ResponseCode object assists in returning errors mainly. A few come by default in the `ResponseCodes` class. More can be initiated using the `ResponseCode` ctor
+
+## LoggingInterceptor
+The logging interceptor will log the request and response to the service.
+### Masking Data
+In order to mask data that shouldn't be logged, the `LoggingInterceptor` supports getting an array in his constructor of property names that should be masked.
+
+```ts
+new LoggingInterceptors(['propertyName','properyThatShouldBeMasked'])
+```
+Assuming the following Json:
+```ts
+{
+  name: 'Dan',
+  test: 'ing',
+  propertyName: 'I'll be masked',
+  inner: {
+    here: 'there',
+    properyThatShouldBeMasked: 123,
+    propertyName: 1111999
+  }
+}
+```
+
+Will result in the following:
+```ts
+{
+  name: 'Dan',
+  test: 'ing',
+  propertyName: '--REDACTED--',
+  inner: {
+    here: 'there',
+    properyThatShouldBeMasked: '--REDACTED--',
+    propertyName: '--REDACTED--'
+}
+```
