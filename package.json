@@ -1,6 +1,6 @@
 {
   "name": "@payk/nestjs-response-utils",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "NestJS Response Transformers, Interceptors and utils",
   "main": "dist/index.js",
   "repository": {
@@ -22,6 +22,7 @@
   "author": "Dan Shapir",
   "license": "ISC",
   "dependencies": {
+    "mask-json": "^1.0.3",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
   },
