@@ -25,8 +25,8 @@ export class TransformResponseInterceptor
     private readonly responseType,
     mapFn?: (res: MetaResponse<any>) => any,
   ) {
-    if (mapFn === null) {
-      mapFn = this.mapResponse;
+    if (!!mapFn) {
+      this.mapResponse = mapFn;
     }
   }
 
