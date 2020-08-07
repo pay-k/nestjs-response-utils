@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@payk/nestjs-winston": "^1.2.1",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "rxjs": "^6.5.3",
     "@types/node": "^12.12.8",
     "rimraf": "^3.0.0",
@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@payk/nestjs-winston": "^1.2.1",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "rxjs": "^6.5.3",
     "@nestjs/common": "^6.10.1",
     "reflect-metadata": "^0.1.13"
